@@ -2,6 +2,8 @@ package cn.lixing.worker.Test.bindcode.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.lixing.worker.Test.page.WorkerPage;
 
@@ -23,9 +25,11 @@ public class BindQrCodeElementObject extends WorkerPage {
 	private WebDriver driver;
 	private BindQrCodeXpathData xpathData;
 	private WorkerPage page;
+	private ApplicationContext context;
 	
 	public BindQrCodeElementObject() {
-		page=new WorkerPage();
+		context=new ClassPathXmlApplicationContext("AppctionContext.xml");
+		page=(WorkerPage) context.getBean("worker");
 		driver=page.openWorkerPage();
 		xpathData=new BindQrCodeXpathData();
 	}

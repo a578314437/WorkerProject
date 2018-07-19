@@ -28,6 +28,7 @@ public class RepQrCodePage {
 		driver=elementObject.getDriver();
 	}
 	public void openRepQrCodePage() {
+		sleepTime(6000);
 		page.click(elementObject.getREPBINDElement());
 	}
 	public void reqDevicePage(String deviceName,String pqcode) {

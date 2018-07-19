@@ -2,7 +2,10 @@ package cn.lixing.worker.Test.uilts;
 
 import static cn.lixing.worker.Test.uilts.PropertiesFileUilt.*;
 import static cn.lixing.worker.Test.uilts.RemoveDuplicateUilts.*;
+import static cn.lixing.worker.Test.uilts.SelectDbUilts.decrypteQpcodeData;
 import static cn.lixing.worker.Test.uilts.SelectDbUilts.select;
+import static cn.lixing.worker.Test.uilts.SelectDbUilts.selectQpcode;
+import static cn.lixing.worker.Test.uilts.SelectDbUilts.selectdEevices;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -23,7 +26,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 public class SelectDbUilts {
-	private static String[][] qpcodeValues;
 	/**
 	 * 创建Oracle连接对象
 	 * @return
@@ -52,7 +54,7 @@ public class SelectDbUilts {
 	 * @param status 二维码状态
 	 * @return 返回String[][]数组
 	 */
-	public static String[][] selectQpcode(String TableName,String[]colValues,int status) {
+	public static String[][] selectQpcode(String TableName,String[]colValues,int status,String colName) {
 		Connection connection;
 		String sql;
 		String colValueStr;
@@ -68,20 +70,42 @@ public class SelectDbUilts {
 		}
 		try {
 			colValueStr=colValueslist.toString().replace("[", "").replace("]", "");
-			sql="select * FROM(select "+colValueStr+" from "+TableName+" WHERE STATUS=? ORDER BY QRCODE_ID DESC) WHERE ROWNUM<=1";
-			pmt=connection.prepareStatement(sql);
-			pmt.setInt(1, status);
-			result=pmt.executeQuery();
-			while(result.next()) {
-				qpcodeValue=result.getString("QRCODE");
-				if(qpcodeValue.endsWith("==")) {
-					qpcodeValuesList.add(qpcodeValue);
+			if(status==1||status==9) {
+				sql="select * FROM(select "+colValueStr+" from "+TableName+" WHERE STATUS=? ORDER BY BIND_TIME DESC) WHERE ROWNUM<=1";
+				pmt=connection.prepareStatement(sql);
+				pmt.setInt(1, status);
+				result=pmt.executeQuery();
+				while(result.next()) {
+					qpcodeValue=result.getString(colName);
+					if(qpcodeValue.endsWith("==")) {
+						qpcodeValuesList.add(qpcodeValue);
+					}
+					qpcodeValues=new String[qpcodeValuesList.size()][2];
+					for(int i=0;i<qpcodeValuesList.size();i++){
+						for(int j=0;j<qpcodeValues.length;j++) {
+							qpcodeValues[i][j]=qpcodeValuesList.get(i);
+						}
+						
+					}
 				}
-				
-			}
-			qpcodeValues=new String[qpcodeValuesList.size()][1];
-			for(int i=0;i<qpcodeValuesList.size();i++){
-				qpcodeValues[i][0]=qpcodeValuesList.get(i);
+			}else{
+				sql="select * FROM(select "+colValueStr+" from "+TableName+" WHERE STATUS=? ORDER BY QRCODE_ID DESC) WHERE ROWNUM<=1";
+				pmt=connection.prepareStatement(sql);
+				pmt.setInt(1, status);
+				result=pmt.executeQuery();
+				while(result.next()) {
+					qpcodeValue=result.getString("QRCODE");
+					if(qpcodeValue.endsWith("==")) {
+						qpcodeValuesList.add(qpcodeValue);
+					}
+					
+				}
+				qpcodeValues=new String[qpcodeValuesList.size()][1];
+				for(int i=0;i<qpcodeValuesList.size();i++){
+					for(int j=0;j<qpcodeValues.length;j++) {
+						qpcodeValues[i][j]=qpcodeValuesList.get(i);
+					}
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -103,7 +127,7 @@ public class SelectDbUilts {
 		OkHttpClient client = new OkHttpClient();
 		JsonParser parser=new JsonParser();
 		String decrypteQpcode;
-		qpcodeValues=selectQpcode("TB_PQ_QRCODE",new String[] {"QRCODE"},status);
+		String[][] qpcodeValues=selectQpcode("TB_PQ_QRCODE",new String[] {"QRCODE"},status,"QRCODE");
 		String [][]decrypteQpcodes=new String[qpcodeValues.length][1];
 		for(int i=0;i<qpcodeValues.length;i++) {
 			MediaType mediaType = MediaType.parse(getData("Content-Type", "\\configFile\\http"));
@@ -150,7 +174,7 @@ public class SelectDbUilts {
 			colValueslist.add(colValue);
 		}
 		colValueStr=colValueslist.toString().replace("[", "").replace("]", "");
-		sql="select "+colValueStr+" from "+TableName+" WHERE STATUS=?";
+		sql="select * FROM(select "+colValueStr+" from "+TableName+" WHERE STATUS=? ORDER BY ID DESC) WHERE ROWNUM<=1";
 		try {
 			pmt=connection.prepareStatement(sql);
 			pmt.setInt(1, status);
@@ -178,7 +202,7 @@ public class SelectDbUilts {
 	 * @param id id
 	 * @return list<Object>
 	 */
-	public static List<Object> select(String TableName,String[]colValues,String id,String USER_ACCOUNT) {
+	public static List<Object> select(String TableName,String[]colValues,int status,String colName) {
 		Connection connection;
 		String sql;
 		String colValueStr;
@@ -195,9 +219,9 @@ public class SelectDbUilts {
 		}
 		try {
 			colValueStr=colValueslist.toString().replace("[", "").replace("]", "");
-			sql="select * FROM(SELECT "+colValueStr+" FROM "+TableName+" WHERE USER_ACCOUNT="+USER_ACCOUNT+" ORDER BY "+id+" DESC) WHERE ROWNUM<=1";
-			System.out.println(sql);
+			sql="select * FROM(SELECT "+colValueStr+" FROM "+TableName+" where "+colName+"=?) WHERE ROWNUM<=1";
 			pmt=connection.prepareStatement(sql);
+			pmt.setObject(1, status);
 			result=pmt.executeQuery();
 			meta = result.getMetaData();
 			colNum=meta.getColumnCount();
@@ -229,21 +253,11 @@ public class SelectDbUilts {
 		}
 		return listArr.get(0);
 	}
-	
-	
-	public static String[][] getQpcodeValues() {
-		return qpcodeValues;
-	}
-
-	public static void setQpcodeValues(String[][] qpcodeValues) {
-		SelectDbUilts.qpcodeValues = qpcodeValues;
-	}
-
 	public static void main(String[] args) {
-		List<Object>list=select("TB_PQ_QRCODE",new String[] {"USER_ACCOUNT","STATUS"},"QRCODE_ID","607240426");
+		System.out.println(select("TB_PQ_QRCODE",new String[] {"QRCODE"},1,"STATUS").get(0));
 		
-		System.out.println(list.get(0));
-		System.out.println(list.get(1));
-	
+//		for(Object obj:list) {
+//			System.out.println(obj);
+//		}
 	}
 }

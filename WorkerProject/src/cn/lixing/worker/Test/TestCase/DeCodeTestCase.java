@@ -2,7 +2,10 @@ package cn.lixing.worker.Test.TestCase;
 
 import static cn.lixing.worker.Test.uilts.SelectDbUilts.*;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -17,6 +20,12 @@ public class DeCodeTestCase {
 	private WebDriver driver;
 	private String[][]qrcodeTestDatas;
 	private String[][]deviceTestDatas;
+	
+	private String actualQRCODE;
+	private String expectedQRCODE;
+	
+	private List<Object>actualQRCODElist;
+	private List<Object>expectedQRCODElist;
 	
 	@BeforeClass
 	public void initTestClass() {
@@ -41,14 +50,22 @@ public class DeCodeTestCase {
 		return deviceTestDatas;
 	}
 	
-	@Test(dataProvider="decodeData",priority=2)
+	@Test(dataProvider="decodeData")
 	public void useDeQrCodeTestCase(String qrcode) {
+		actualQRCODElist=select("TB_PQ_QRCODE",new String[] {"QRCODE"},1,"STATUS");
+		actualQRCODE=(String) actualQRCODElist.get(0);
+
 		page.useDeQrCodePage(qrcode);
+		expectedQRCODElist=select("TB_PQ_QRCODE",new String[] {"QRCODE"},9,"STATUS");
+		expectedQRCODE=(String) expectedQRCODElist.get(0);
+		
+		Assert.assertEquals(actualQRCODE,expectedQRCODE);
 	}
 	
-	@Test(dataProvider="deviceData",priority=1)
+	//@Test(dataProvider="deviceData",priority=1)
 	public void disDeQrCodeTestCase(String deviceName) {
 		page.disDeQrCodePage(deviceName);
+		
 	}
 	
 	@AfterClass

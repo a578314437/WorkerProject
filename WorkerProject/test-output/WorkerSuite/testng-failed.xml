@@ -9,16 +9,11 @@
           <include name="RepCodeTestCase_01"/>
         </methods>
       </class> <!-- cn.lixing.worker.Test.TestCase.RepCodeTestCase -->
-      <class name="cn.lixing.worker.Test.TestCase.DeCodeTestCase">
-        <methods>
-          <include name="close"/>
-          <include name="initTestClass"/>
-        </methods>
-      </class> <!-- cn.lixing.worker.Test.TestCase.DeCodeTestCase -->
       <class name="cn.lixing.worker.Test.TestCase.BindCodeTesCase">
         <methods>
           <include name="initTestData"/>
           <include name="close"/>
+          <include name="BindCodeTest_01" invocation-numbers="0"/>
         </methods>
       </class> <!-- cn.lixing.worker.Test.TestCase.BindCodeTesCase -->
     </classes>

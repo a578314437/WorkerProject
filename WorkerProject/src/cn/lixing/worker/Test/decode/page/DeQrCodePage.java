@@ -42,6 +42,11 @@ public class DeQrCodePage {
 		exejs.executeScript(js);
 		page.sendKey(elementObject.getIMPORTPQCODEElement(), qrcode);
 		page.click(elementObject.getCODEBNTElement());
+		sleepTime(6000);
+		page.click(elementObject.getDECODEDEVICEBNTElement());
+		sleepTime(6000);
+		page.click(elementObject.getCONFIRMBTNElement());
+		page.click(elementObject.getRETURNBTNElement());
 	}
 	
 	public void disDeQrCodePage(String deviceName) {

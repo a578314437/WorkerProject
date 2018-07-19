@@ -1,16 +1,18 @@
 package cn.lixing.worker.Test.page;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.stereotype.Component;
 
-public class WorkerPage {
+@Component("worker")
+public class WorkerPage  implements Pages{
 	private WebDriver driver;
 	private WebElement element;
-	private WebDriverWait wait;
+	//private WebDriverWait wait;
 	
 	public WebDriver openWorkerPage() {
 		System.setProperty("webdriver.chrome.driver", "D:\\SelfServiceProject\\SelfServiceProject\\driver\\chromedriver.exe");
@@ -18,13 +20,14 @@ public class WorkerPage {
 		driver.get("http://58.249.55.68:30063/worker/");
 		return driver;
 	}
-	public void ElementWaitTime(String xpathExpression) {
-		wait=new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(xpathExpression)));
-	}
+//	public void ElementWaitTime(String xpathExpression) {
+//		wait=new WebDriverWait(driver, 30);
+//		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(xpathExpression)));
+//	}
 	
 	public WebElement getWebElement(String xpath) {
-		ElementWaitTime(xpath);
+		//ElementWaitTime(xpath);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
 		element=driver.findElement(By.xpath(xpath));
 		return element;
 	}

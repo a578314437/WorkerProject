@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite name="Failed suite [WorkerSuite]">
+  <test name="WorkerTest(failed)">
     <classes>
+      <class name="cn.lixing.worker.Test.TestCase.RepCodeTestCase">
+        <methods>
+          <include name="BeforeClass"/>
+          <include name="RepCodeTestCase_01"/>
+        </methods>
+      </class> <!-- cn.lixing.worker.Test.TestCase.RepCodeTestCase -->
       <class name="cn.lixing.worker.Test.TestCase.BindCodeTesCase">
         <methods>
           <include name="initTestData"/>
@@ -11,5 +17,5 @@
         </methods>
       </class> <!-- cn.lixing.worker.Test.TestCase.BindCodeTesCase -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- WorkerTest(failed) -->
+</suite> <!-- Failed suite [WorkerSuite] -->

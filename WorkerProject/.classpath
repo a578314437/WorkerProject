@@ -8,5 +8,21 @@
 	<classpathentry kind="lib" path="libs/selenium-server-standalone-3.0.0.jar"/>
 	<classpathentry kind="lib" path="libs/okhttp-3.6.0.jar"/>
 	<classpathentry kind="lib" path="libs/okio-1.13.0.jar"/>
+	<classpathentry kind="lib" path="libs/client-combined-3.1.0-nodeps.jar"/>
+	<classpathentry kind="lib" path="libs/com.springsource.org.aopalliance-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/guava-20.0.jar"/>
+	<classpathentry kind="lib" path="libs/guice-3.0.jar"/>
+	<classpathentry kind="lib" path="libs/log4j-1.2.12.jar"/>
+	<classpathentry kind="lib" path="libs/reportng-1.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/spring-aop-4.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-aspects-4.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-beans-4.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-context-4.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-core-4.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-expression-4.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/velocity-dep-1.4.jar"/>
+	<classpathentry kind="lib" path="libs/testng-6.14.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

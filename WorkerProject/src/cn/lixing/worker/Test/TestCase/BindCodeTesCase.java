@@ -17,7 +17,7 @@ public class BindCodeTesCase {
 	private WebDriver driver;
 	private List<Object>expectedValues;
 	private String actualUSER_ACCOUNT;
-	private int actualSTATUS=1;
+	private String actualSTATUS="1";
 	private String expectedUSER_ACCOUNT;
 	private String expectedSTATUS;
 	
@@ -37,17 +37,17 @@ public class BindCodeTesCase {
 	@Test(dataProvider="BindCodeData")
 	public void BindCodeTest_01(String pqcode) {
 		page.AddDevicePage(pqcode);
-		actualUSER_ACCOUNT=page.getBusNumber();
-		expectedValues=select("TB_PQ_QRCODE",new String[] {"USER_ACCOUNT","STATUS"},"QRCODE_ID",actualUSER_ACCOUNT);
+		expectedValues=select("TB_PQ_QRCODE",new String[] {"USER_ACCOUNT","STATUS"},1,"STATUS");
 		expectedUSER_ACCOUNT=(String) expectedValues.get(0);
 		expectedSTATUS=(String) expectedValues.get(1);
-		
-		
+		actualUSER_ACCOUNT=page.getBusNumber();
+	
 		
 		Assert.assertEquals(actualUSER_ACCOUNT,expectedUSER_ACCOUNT);
 		Assert.assertEquals(actualSTATUS,expectedSTATUS);
 		
 	}
+	
 	
 	@AfterClass
 	public void close() {
