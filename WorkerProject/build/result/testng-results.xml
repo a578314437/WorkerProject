@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="WorkerSuite" duration-ms="71191" started-at="2018-07-19T08:58:14Z" finished-at="2018-07-19T08:59:25Z">
+    <groups>
+    </groups>
+    <test name="WorkerTest" duration-ms="71191" started-at="2018-07-19T08:58:14Z" finished-at="2018-07-19T08:59:25Z">
+      <class name="cn.lixing.worker.Test.TestCase.BindCodeTesCase">
+        <test-method status="PASS" signature="initTestData()[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@6be46e8f]" name="initTestData" is-config="true" duration-ms="31594" started-at="2018-07-19T16:58:14Z" finished-at="2018-07-19T16:58:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initTestData -->
+        <test-method status="PASS" signature="BindCodeTest_01(java.lang.String)[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@6be46e8f]" name="BindCodeTest_01" duration-ms="38621" started-at="2018-07-19T16:58:46Z" data-provider="BindCodeData" finished-at="2018-07-19T16:59:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[9pqIHdPQS]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BindCodeTest_01 -->
+        <test-method status="PASS" signature="close()[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@6be46e8f]" name="close" is-config="true" duration-ms="964" started-at="2018-07-19T16:59:24Z" finished-at="2018-07-19T16:59:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- cn.lixing.worker.Test.TestCase.BindCodeTesCase -->
+    </test> <!-- WorkerTest -->
+  </suite> <!-- WorkerSuite -->
+</testng-results>

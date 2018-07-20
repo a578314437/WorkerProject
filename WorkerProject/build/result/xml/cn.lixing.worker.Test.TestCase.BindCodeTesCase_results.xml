@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WorkerTest"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="38.621">
+  <properties />
+  
+  
+            <testcase name="BindCodeTest_01" time="38.621" classname="cn.lixing.worker.Test.TestCase.BindCodeTesCase" />
+      
+</testsuite>

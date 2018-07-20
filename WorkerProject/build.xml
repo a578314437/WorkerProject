@@ -1,0 +1,44 @@
+<project name="run-test" default="run-testng" basedir=".">
+	<property name="src.dir" location="src"></property>
+	<property name="build.dir" location="build"></property>
+	<property name="test.dir" location="${build.dir}/test"></property>
+	<property name="lib.dir" location="libs"></property>
+	<property name="projectFile" location="serverStartFile"></property>
+	<property name="result.dir" location="${build.dir}/result"></property>
+
+	<path id="compile-path">
+		<fileset dir="${lib.dir}" includes="*.jar" excludes="commons-logging-1.2.jar"></fileset>
+		<pathelement location="${test.dir}"/>
+	</path>
+	<taskdef name="testng" classpath="${lib.dir}" classname="org.testng.TestNGAntTask" classpathref="compile-path"/>
+	<target name="init">
+		<delete dir="${build.dir}"/>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${test.dir}"/>
+	</target>
+	<target name="copy-file" depends="init">
+		<copy todir="${test.dir}">
+			<fileset dir="${src.dir}">
+				<include name="AppctionContext.xml"/>
+				<include name="log4j.properties"/>
+			</fileset>
+		</copy>
+	</target>
+	<target name="compile" depends="copy-file">
+		<javac srcdir="${src.dir}" 
+			destdir="${test.dir}" 
+			classpathref="compile-path"
+			encoding="GBK"
+			debug="on">
+		</javac>
+	</target>
+	<target name="run-testng" depends="compile">
+		<testng outputdir="${result.dir}" classpathref="compile-path"
+			haltonfailure="true"
+			useDefaultListeners="true"
+			listeners="org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter">
+			 <jvmarg value="-Dfile.encoding=UTF-8" />
+	      <xmlfileset dir="${basedir}" includes="testng.xml"/> 
+	    </testng>
+	</target>
+</project>
