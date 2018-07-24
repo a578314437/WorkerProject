@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 
 import cn.lixing.worker.Test.page.WorkerPage;
 
@@ -42,7 +43,7 @@ public class DeQrCodePage {
 		exejs.executeScript(js);
 		page.sendKey(elementObject.getIMPORTPQCODEElement(), qrcode);
 		page.click(elementObject.getCODEBNTElement());
-		sleepTime(6000);
+		sleepTime(12000);
 		page.click(elementObject.getDECODEDEVICEBNTElement());
 		sleepTime(6000);
 		page.click(elementObject.getCONFIRMBTNElement());

@@ -1,32 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="WorkerSuite" duration-ms="71191" started-at="2018-07-19T08:58:14Z" finished-at="2018-07-19T08:59:25Z">
+  <suite name="WorkerSuite" duration-ms="196639" started-at="2018-07-24T00:34:03Z" finished-at="2018-07-24T00:37:19Z">
     <groups>
     </groups>
-    <test name="WorkerTest" duration-ms="71191" started-at="2018-07-19T08:58:14Z" finished-at="2018-07-19T08:59:25Z">
+    <test name="WorkerTest" duration-ms="196639" started-at="2018-07-24T00:34:03Z" finished-at="2018-07-24T00:37:19Z">
       <class name="cn.lixing.worker.Test.TestCase.BindCodeTesCase">
-        <test-method status="PASS" signature="initTestData()[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@6be46e8f]" name="initTestData" is-config="true" duration-ms="31594" started-at="2018-07-19T16:58:14Z" finished-at="2018-07-19T16:58:46Z">
+        <test-method status="PASS" signature="initTestData()[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@327471b5]" name="initTestData" is-config="true" duration-ms="78278" started-at="2018-07-24T08:34:03Z" finished-at="2018-07-24T08:35:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initTestData -->
-        <test-method status="PASS" signature="BindCodeTest_01(java.lang.String)[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@6be46e8f]" name="BindCodeTest_01" duration-ms="38621" started-at="2018-07-19T16:58:46Z" data-provider="BindCodeData" finished-at="2018-07-19T16:59:24Z">
+        <test-method status="PASS" signature="BindCodeTest_01(java.lang.String)[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@327471b5]" name="BindCodeTest_01" duration-ms="40618" started-at="2018-07-24T08:35:21Z" data-provider="BindCodeData" finished-at="2018-07-24T08:36:02Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[9pqIHdPQS]]>
+                <![CDATA[aBFnFQMQS]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BindCodeTest_01 -->
-        <test-method status="PASS" signature="close()[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@6be46e8f]" name="close" is-config="true" duration-ms="964" started-at="2018-07-19T16:59:24Z" finished-at="2018-07-19T16:59:25Z">
+        <test-method status="PASS" signature="close()[pri:0, instance:cn.lixing.worker.Test.TestCase.BindCodeTesCase@327471b5]" name="close" is-config="true" duration-ms="958" started-at="2018-07-24T08:36:02Z" finished-at="2018-07-24T08:36:03Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
       </class> <!-- cn.lixing.worker.Test.TestCase.BindCodeTesCase -->
+      <class name="cn.lixing.worker.Test.TestCase.DeCodeTestCase">
+        <test-method status="PASS" signature="initTestClass()[pri:0, instance:cn.lixing.worker.Test.TestCase.DeCodeTestCase@4157f54e]" name="initTestClass" is-config="true" duration-ms="34684" started-at="2018-07-24T08:36:03Z" finished-at="2018-07-24T08:36:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initTestClass -->
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:cn.lixing.worker.Test.TestCase.DeCodeTestCase@4157f54e]" name="BeforeMethod" is-config="true" duration-ms="6116" started-at="2018-07-24T08:36:37Z" finished-at="2018-07-24T08:36:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeMethod -->
+        <test-method status="PASS" signature="useDeQrCodeTestCase(java.lang.String)[pri:0, instance:cn.lixing.worker.Test.TestCase.DeCodeTestCase@4157f54e]" name="useDeQrCodeTestCase" duration-ms="33693" started-at="2018-07-24T08:36:43Z" data-provider="decodeData" finished-at="2018-07-24T08:37:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[aBFnFQMQS]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- useDeQrCodeTestCase -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:cn.lixing.worker.Test.TestCase.DeCodeTestCase@4157f54e]" name="afterClass" is-config="true" duration-ms="2281" started-at="2018-07-24T08:37:17Z" finished-at="2018-07-24T08:37:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- cn.lixing.worker.Test.TestCase.DeCodeTestCase -->
     </test> <!-- WorkerTest -->
   </suite> <!-- WorkerSuite -->
 </testng-results>

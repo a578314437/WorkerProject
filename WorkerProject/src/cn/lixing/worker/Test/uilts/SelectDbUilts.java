@@ -2,10 +2,7 @@ package cn.lixing.worker.Test.uilts;
 
 import static cn.lixing.worker.Test.uilts.PropertiesFileUilt.*;
 import static cn.lixing.worker.Test.uilts.RemoveDuplicateUilts.*;
-import static cn.lixing.worker.Test.uilts.SelectDbUilts.decrypteQpcodeData;
-import static cn.lixing.worker.Test.uilts.SelectDbUilts.select;
-import static cn.lixing.worker.Test.uilts.SelectDbUilts.selectQpcode;
-import static cn.lixing.worker.Test.uilts.SelectDbUilts.selectdEevices;
+
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -253,11 +249,37 @@ public class SelectDbUilts {
 		}
 		return listArr.get(0);
 	}
+	/**
+	 * 更新数据
+	 * @param colNames
+	 * @param values
+	 * @param TableName
+	 * @param conditionValue
+	 */
+	public static void updata(Object[] colNames,Object[] values,String TableName,String conditionColValue,Object conditionValue) {
+		Connection connection;
+		connection=getConnection();
+		PreparedStatement pmt;
+		String sql=null;
+		try {
+			for(int i=0;i<colNames.length;i++) {
+				sql="update "+TableName+" set "+colNames[i]+"="+values[i]+" where "+conditionValue+"=?";
+				pmt=connection.prepareStatement(sql);
+				pmt.setObject(1, conditionValue);
+				pmt.executeQuery();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("更新成功！");
+	}
 	public static void main(String[] args) {
-		System.out.println(select("TB_PQ_QRCODE",new String[] {"QRCODE"},1,"STATUS").get(0));
-		
-//		for(Object obj:list) {
-//			System.out.println(obj);
-//		}
+		updata(new Object[] {"AREA_CODE","DEVICE_MODE_ID","BIND_TIME","STATUS","CUST_NAME","CUST_PHONE","DEVICE_SN","COMPANY_CODE","VIRTUAL_DEVICE","DEVICE_MODE","COMPANY_NAME","STAFF_LEAD_PHONE","STAFF_LEAD_NAME"}, 
+				new Object[] {null,null,null,0,null,null,null,null,null,null,null,null,null}, "TB_PQ_QRCODE","STATUS", 9);
 	}
 }

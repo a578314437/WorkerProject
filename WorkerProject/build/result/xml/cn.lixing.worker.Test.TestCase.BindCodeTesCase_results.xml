@@ -4,10 +4,10 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="38.621">
+           time="40.618">
   <properties />
   
   
-            <testcase name="BindCodeTest_01" time="38.621" classname="cn.lixing.worker.Test.TestCase.BindCodeTesCase" />
+            <testcase name="BindCodeTest_01" time="40.618" classname="cn.lixing.worker.Test.TestCase.BindCodeTesCase" />
       
 </testsuite>
