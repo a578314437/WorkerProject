@@ -6,8 +6,7 @@
       <class name="cn.lixing.worker.Test.TestCase.BindCodeTesCase">
         <methods>
           <include name="initTestData"/>
-          <include name="close"/>
-          <include name="BindCodeTest_01" invocation-numbers="0"/>
+          <include name="BindCodeTest_01"/>
         </methods>
       </class> <!-- cn.lixing.worker.Test.TestCase.BindCodeTesCase -->
     </classes>

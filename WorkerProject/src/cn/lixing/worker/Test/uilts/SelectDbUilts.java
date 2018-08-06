@@ -23,7 +23,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 public class SelectDbUilts {
 	/**
-	 * 创建Oracle连接对象
+	 * 
 	 * @return
 	 */
 	public static Connection getConnection() {
@@ -44,11 +44,11 @@ public class SelectDbUilts {
 	}
 	
 	/**
-	 * 获取数据库的qrcode二维码
-	 * @param TableName 表名
-	 * @param colValues 列表
-	 * @param status 二维码状态
-	 * @return 返回String[][]数组
+	 * 
+	 * @param TableName
+	 * @param colValues
+	 * @param status
+	 * @return String[][]
 	 */
 	public static String[][] selectQpcode(String TableName,String[]colValues,int status,String colName) {
 		Connection connection;
@@ -115,8 +115,8 @@ public class SelectDbUilts {
 	}
 	
 	/**
-	 * 二维码解码
-	 * @param status 二维码状态（0,1,9）
+	 * 
+	 * @param status 
 	 * @return
 	 */
 	public static String[][] decrypteQpcodeData(int status) {
@@ -149,11 +149,11 @@ public class SelectDbUilts {
 		return decrypteQpcodes;
 	}
 	/**
-	 * 获取绑定的设备
-	 * @param TableName 表名
-	 * @param colValues 列明
-	 * @param status 状态 （默认为1）
-	 * @return String[][]数组
+	 * 
+	 * @param TableName 
+	 * @param colValues 
+	 * @param status
+	 * @return String[][]
 	 */
 	public static String[][] selectdEevices(String TableName,String[]colValues,int status){
 		Connection connection;
@@ -192,9 +192,9 @@ public class SelectDbUilts {
 	}
 	
 	/**
-	 * 获取数据库的对应表中的列值
-	 * @param TableName 表名
-	 * @param colValues 列明
+	 * 
+	 * @param TableName 
+	 * @param colValues 
 	 * @param id id
 	 * @return list<Object>
 	 */
@@ -215,7 +215,12 @@ public class SelectDbUilts {
 		}
 		try {
 			colValueStr=colValueslist.toString().replace("[", "").replace("]", "");
-			sql="select * FROM(SELECT "+colValueStr+" FROM "+TableName+" where "+colName+"=?) WHERE ROWNUM<=1";
+			if(status==1) {
+				sql="select * FROM(SELECT "+colValueStr+" FROM "+TableName+" where "+colName+"=?) WHERE ROWNUM<=1";
+			}else {
+				sql="select * FROM(SELECT "+colValueStr+" FROM "+TableName+" where "+colName+"=? and type=2) WHERE ROWNUM<=1";
+			}
+			
 			pmt=connection.prepareStatement(sql);
 			pmt.setObject(1, status);
 			result=pmt.executeQuery();
@@ -250,7 +255,7 @@ public class SelectDbUilts {
 		return listArr.get(0);
 	}
 	/**
-	 * 更新数据
+	 * 
 	 * @param colNames
 	 * @param values
 	 * @param TableName
@@ -276,10 +281,10 @@ public class SelectDbUilts {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("更新成功！");
+		System.out.println("update successful");
 	}
 	public static void main(String[] args) {
-		updata(new Object[] {"AREA_CODE","DEVICE_MODE_ID","BIND_TIME","STATUS","CUST_NAME","CUST_PHONE","DEVICE_SN","COMPANY_CODE","VIRTUAL_DEVICE","DEVICE_MODE","COMPANY_NAME","STAFF_LEAD_PHONE","STAFF_LEAD_NAME"}, 
-				new Object[] {null,null,null,0,null,null,null,null,null,null,null,null,null}, "TB_PQ_QRCODE","STATUS", 9);
+		updata(new Object[] {"AREA_CODE","DEVICE_MODE_ID","USER_ACCOUNT","BIND_TIME","STATUS","DEVICE_SN","COMPANY_CODE","VIRTUAL_DEVICE","DEVICE_MODE","COMPANY_NAME","TYPE"}, 
+				new Object[] {null,null,null,null,0,null,null,null,null,null,null}, "TB_PQ_QRCODE","STATUS", 1);
 	}
 }

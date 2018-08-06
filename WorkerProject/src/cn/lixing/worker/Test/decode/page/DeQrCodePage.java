@@ -47,7 +47,9 @@ public class DeQrCodePage {
 		page.click(elementObject.getDECODEDEVICEBNTElement());
 		sleepTime(6000);
 		page.click(elementObject.getCONFIRMBTNElement());
+		sleepTime(6000);
 		page.click(elementObject.getRETURNBTNElement());
+		sleepTime(6000);
 	}
 	
 	public void disDeQrCodePage(String deviceName) {

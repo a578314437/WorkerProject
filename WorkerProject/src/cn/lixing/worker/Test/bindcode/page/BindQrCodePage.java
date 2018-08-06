@@ -13,7 +13,7 @@ public class BindQrCodePage {
 	private BindQrCodeElementObject elementObject;
 	private Robot robot;
 	private WebDriver driver;
-	private String busNumber="607240426";
+	private String busNumber="607270598";
 	public BindQrCodePage() {
 		try {
 			robot=new Robot();

@@ -34,6 +34,7 @@ public class BindCodeTesCase {
 		return testDatas;
 	}
 	
+
 	@Test(dataProvider="BindCodeData")
 	public void BindCodeTest_01(String pqcode) {
 		page.AddDevicePage(pqcode);

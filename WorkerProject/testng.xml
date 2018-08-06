@@ -10,6 +10,7 @@
         <class name="cn.lixing.worker.Test.TestCase.DeCodeTestCase"/>
          -->
          <class name="cn.lixing.worker.Test.TestCase.BindCodeTesCase"/>
+         <class name="cn.lixing.worker.Test.TestCase.RepCodeTestCase"/>
          <class name="cn.lixing.worker.Test.TestCase.DeCodeTestCase"/>
     </classes>
   </test> 

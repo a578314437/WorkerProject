@@ -17,7 +17,7 @@ public class WorkerPage  implements Pages{
 	public WebDriver openWorkerPage() {
 		System.setProperty("webdriver.chrome.driver", "D:\\SelfServiceProject\\SelfServiceProject\\driver\\chromedriver.exe");
 		driver=new ChromeDriver();
-		driver.get("http://58.249.55.68:30063/worker/");
+		driver.get("https://zcq.gsu.me:8743/worker/");
 		return driver;
 	}
 //	public void ElementWaitTime(String xpathExpression) {

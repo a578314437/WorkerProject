@@ -70,23 +70,8 @@ public class DeCodeTestCase {
 	
 	@AfterClass
 	public void afterClass() {
-		updata(
-				new Object[] {"AREA_CODE",
-							 "USER_ACCOUNT",
-							 "DEVICE_MODE_ID",
-							 "BIND_TIME",
-							 "STATUS",
-							 "CUST_NAME",
-							 "CUST_PHONE",
-							 "DEVICE_SN",
-							 "COMPANY_CODE",
-							 "VIRTUAL_DEVICE",
-							 "DEVICE_MODE",
-							 "COMPANY_NAME",
-							 "STAFF_LEAD_PHONE",
-							 "STAFF_LEAD_NAME"
-							 }, 
-				new Object[] {null,null,null,null,0,null,null,null,null,null,null,null,null,null}, "TB_PQ_QRCODE","STATUS", 9);
+		updata(new Object[] {"AREA_CODE","DEVICE_MODE_ID","USER_ACCOUNT","BIND_TIME","STATUS","DEVICE_SN","COMPANY_CODE","VIRTUAL_DEVICE","DEVICE_MODE","COMPANY_NAME","TYPE"}, 
+				new Object[] {null,null,null,null,0,null,null,null,null,null,null}, "TB_PQ_QRCODE","STATUS", 9);
 		driver.quit();
 	}
 }
